@@ -6,10 +6,16 @@
     const { createApp } = Vue
 
     const app = createApp ({
-
+      setup() {
+        const result = ~~~~
+        result {
+          result
+        }
+      }
     })
 
     app.mount('#app')
 ```
 
 -  ref() : 반응형 상태를 선언하는 함수
+  - reactive reference

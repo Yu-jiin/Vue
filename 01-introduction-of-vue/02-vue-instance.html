@@ -9,6 +9,7 @@
 
 <body>
   <div id="app">
+    <h1>{{message}}</h1>
   </div>
 
 
@@ -22,6 +23,9 @@
         const message = ref('hello')
         console.log(message)        // ref 객체
         console.log(message.value)  // hello
+        return {
+          message
+        }
       }
     })
 
