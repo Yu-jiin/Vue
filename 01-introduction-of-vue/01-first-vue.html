@@ -9,9 +9,33 @@
 
 <body>
   <div id="app">
+    <h1>{{message}}</h1>
+    <!-- v-on :  -->
+    <button v-on:click="count++">
+      Count Num : {{count}}
+    </button>
   </div>
 
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
+    // createApp, ref 둘다 함수
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const message = ref('Hello vue!')
+        const count = ref(0)
+        return {
+          // message : message 인데 단축속성 써서ㅓ
+          message,
+          count,
+        }
+      }
+    })
+
+    // 연결작업 : 마운트한다
+    app.mount('#app')
   </script>
 </body>
 
