@@ -9,9 +9,12 @@
 
 <body>
   <div id="app">
-    <p>반응형 변수: </p>
-    <p>일반 변수: </p>
-    <button>값 업데이트</button>
+    <!-- 일반변수도 console 상으론 1 증가, but 반영 X -->
+    <p>반응형 변수: {{reactiveValue}}</p>
+    <p>일반 변수: {{normalValue}}</p>
+    <button v-on:click="updateValues">
+      값 업데이트
+    </button>
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -20,7 +23,19 @@
 
     const app = createApp({
       setup() {
-        return {}
+        const reactiveValue = ref(0)
+        let normalValue = 0
+        const updateValues = function() {
+          reactiveValue.value++
+          normalValue++
+          console.log(reactiveValue.value)
+          console.log(normalValue)
+        }
+        return {
+          reactiveValue,
+          normalValue,
+          updateValues
+        }
       }
     })
 
