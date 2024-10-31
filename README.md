@@ -19,3 +19,4 @@
 
 -  ref() : 반응형 상태를 선언하는 함수
 -   = reactive reference
+![alt text](image.png)
