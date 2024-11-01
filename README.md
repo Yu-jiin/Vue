@@ -28,3 +28,18 @@
 ***
 
 ![alt text](image-5.png)
+
+***
+
+```
+ pip install django-environ
+ <!-- settings.py에 설정 -->
+import os
+import environ
+
+env = environ.Env(DEBUG=(bool, True))
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
+API_KEY = env('API_KEY')
+<!-- 그 전에 .env 파일은 만들자 -->
+```
+ 1. API_KEY는 환경변수로 해
