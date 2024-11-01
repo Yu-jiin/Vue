@@ -33,7 +33,7 @@ def save_data(request):
         # 3. DB에 없다면 저장한다
         # 데이터 포장 -> serializer 변환 -> 유효성검증, 저장 등 편하게 가능
         # 중복 확인갈비
-        if Weather.objects.filter().exists():
+        if Weather.objects.filter(dt_txt=dt_txt, temp=temp, feels_like=feels_like).exists():
             continue
         save_data = {
             'dt_txt': dt_txt,
