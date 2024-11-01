@@ -33,15 +33,19 @@ const renderCalender = () => {
   const firstDateIndex = dates.indexOf(1);
   const lastDateIndex = dates.lastIndexOf(TLDate);
 
-  dates.forEach((date, i) => {
-    const condition = i >= firstDateIndex && i < lastDateIndex + 1
-                      ? 'this'
-                      : 'other';
-    dates[i] = `<div class="date"><span class=${condition}>${date}</span></div>`;
-  });
+  const emojiData = JSON.parse(localStorage.getItem('emojis') || '{}');
 
-  document.querySelector('.dates').innerHTML = dates.join('');
+  // 날짜와 이모지를 표시하는 부분
+  const dateElements = dates.map((date, i) => {
+    const condition = i >= firstDateIndex && i < lastDateIndex + 1 ? 'this' : 'other';
+    const dateKey = `${viewYear}-${viewMonth + 1}-${date}`;
+    const emoji = emojiData[dateKey] ? `<span class="emoji">${emojiData[dateKey]}</span>` : '';
+    return `<div class="date"><span class="${condition}">${date}</span>${emoji}</div>`;
+  }).join('');
 
+  document.querySelector('.dates').innerHTML = dateElements;
+
+  // 오늘 날짜 표시
   const today = new Date();
   if (viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
     for (let date of document.querySelectorAll('.this')) {
@@ -71,3 +75,22 @@ const goToday = () => {
   date = new Date();
   renderCalender();
 };
+
+let selectedDate = null;
+
+// 날짜 클릭 시 이모지 선택 모달 표시
+document.querySelector('.dates').addEventListener('click', (event) => {
+  if (event.target.classList.contains('this')) {
+    selectedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${event.target.innerText}`;
+    document.getElementById('emojiModal').style.display = 'block';
+  }
+});
+
+// 이모지 선택 시 날짜에 이모지 표시 및 저장
+function selectEmoji(emoji) {
+  document.getElementById('emojiModal').style.display = 'none';
+  const emojiData = JSON.parse(localStorage.getItem('emojis') || '{}');
+  emojiData[selectedDate] = emoji;
+  localStorage.setItem('emojis', JSON.stringify(emojiData));
+  renderCalender();  // 달력 다시 그려서 이모지 반영
+}
