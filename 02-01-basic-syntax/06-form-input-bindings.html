@@ -11,11 +11,13 @@
 
 <body>
   <div id="app">
-    <p>{{ }}</p>
-    <input>
+    <p>{{ inputText1 }}</p>
+    <input :value="inputText1" @input="onInput">
 
-    <p>{{ }}</p>
-    <input>
+    <p>사용자 입력 데이터와 반응형 변수 실시간 동기화</p>
+    <p>근데 한글은 지원안되서 v-bind, v-on 사용해야함</p>
+    <p>{{ inputText2 }}</p>
+    <input v-model="inputText2">
 
   </div>
 
@@ -25,7 +27,17 @@
 
     const app = createApp({
       setup() {
-        return {}
+        const inputText1 = ref('')
+        const onInput = function (event) {
+          inputText1.value = event.currentTarget.value
+        }
+        const inputText2 = ref('')
+
+        return {
+          inputText1,
+          onInput,
+          inputText2
+        }
       }
     })
 
