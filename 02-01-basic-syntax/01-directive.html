@@ -9,11 +9,14 @@
 
 <body>
   <div id="app">
-    <p>Hi there</p>
+    <!-- 표현식이 변경될 때 DOM에 반응적으로 업뎃 적용 -->
+    <p v-if="seen">Hi there</p>
 
-    <a href="myUrl">Link</a>
+    <!-- href속성 값을 myUl 값에 바인딩 하도록 하는 v-bind -->
+    <a v-bind:href="myUrl">Link</a>
 
-    <button>button</button>
+    <!-- click 이벤트 수신할 이벤트 이름을 작성하는 v-on -->
+    <button v-on:click="doSomething">button</button>
 
     <form>
       <input type="submit">
