@@ -44,3 +44,8 @@ API_KEY = env('API_KEY')
 <!-- 그 전에 .env 파일은 만들자 -->
 ```
  1. API_KEY는 환경변수로 해
+
+***
+
+![alt text](image-6.png)
+![alt text](image-7.png)
