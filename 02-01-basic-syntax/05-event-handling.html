@@ -12,22 +12,28 @@
 <body>
   <div id="app">
     <!-- Inline Handlers -->
-    <button>Add 1</button>
-    <p>Count: {{ }}</p>
+    <button @click="count++">Add 1</button>
+    <p>Count: {{ count }}</p>
 
     <!-- Method Handlers -->
-    <button>Hello</button>
+    <button @click="increase">Hello</button>
+    <button @click="myFunc">Hello</button>
 
     <!-- Calling Methods in Inline Handlers -->
-    <button>Say hello</button>
-    <button>Say bye</button>
+    <button @click="greeting('Hello')">Say hello</button>
+    <button @click="greeting('Bye')">Say bye</button>
 
     <!-- Accessing Event Argument in Inline Handlers -->
-    <button>Submit</button>
+     <!-- 글로벌 변수 $event -->
+    <button @click="warning('경고입니다', $event)">Submit</button>
 
     <!-- event modifiers -->
-    <form>...</form>
-    <a>...</a>
+    <!-- prevent가 없으면 그냥 새로고침이 됨 -->
+    <form @submit.prevent="onSubmit">
+      <input type="submit">
+    </form>
+    <!-- stop.prevent 등 작성된 순서로 실행되기에 유의 -->
+    <a @click.stop.prevnt="">onLink</a>
 
     <!-- key modifiers -->
     <input>
@@ -40,7 +46,36 @@
 
     const app = createApp({
       setup() {
-        return {}
+        const count = ref(0)
+        const increase = function () {
+          count.value += 1
+        }
+        const greeting = function(message){
+          console.log(message)
+        }
+        const warning = function(message, event) {
+          console.log(message)
+          console.log(event)
+        }
+        const name = ref('뭘쳐다봐')
+        const myFunc = function (event) {
+          console.log(event)
+          console.log(event.currentTarget)
+          console.log(`Hello ${name.value}`)
+        }
+        const onSubmit = function() {
+          console.log('onSubmit')
+        }
+        const onLink = ref('https://www.google.com/')
+        return {
+          count,
+          increase,
+          greeting,
+          warning,
+          myFunc,
+          onSubmit,
+          onLink,
+        }
       }
     })
 
