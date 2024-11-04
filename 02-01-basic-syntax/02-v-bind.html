@@ -8,10 +8,25 @@
 </head>
 
 <body>
+  <div>
+    <h2>v-bind</h2>
+    <p>하나 이상의 속성 또는 컴포넌트 데이터를 표현식에 동적으로 바인딩</p>
+    <ul> v-bind 사용처
+      <li>Attribute Bindings</li>
+      <li>Class and Style Bindings</li>
+      <li> v-bind:src </li>
+      <li> :src 콜론만 쓰고 v-bind 생략도 가능</li>
+    </ul>
+  </div>
+
   <div id="app">
-    <img>
-    <a>Move to url</a>
-    <p>Dynamic Attr</p>
+    <img v-bind:src="imageSrc">
+    <!-- 약어 -->
+    <!-- <img :src="imageSrc"> -->
+    <a v-bind:href="myUrl">Move to url</a>
+    <!-- 약어 -->
+    <!-- <a :href="myUrl">Move to url</a> -->
+    <p :[dynamicattr]="dynamicValue">Dynamic Attr</p>
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -22,6 +37,8 @@
       setup() {
         const imageSrc = ref('https://picsum.photos/200')
         const myUrl = ref('https://www.google.co.kr/')
+        // 대괄호 안에 작성하는 이름은 반드시 소문자로만 구성..
+        // 브라우저가 속성 이름을 소문자로 강제변환
         const dynamicattr = ref('title')
         const dynamicValue = ref('Hello Vue.js')
         return {
