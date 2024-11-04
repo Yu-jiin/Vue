@@ -18,7 +18,8 @@
     <!-- click 이벤트 수신할 이벤트 이름을 작성하는 v-on -->
     <button v-on:click="doSomething">button</button>
 
-    <form>
+    <!-- prevent = 이벤트 동작 취소 -->
+    <form v-on:submit.prevent="onSubmit">
       <input type="submit">
     </form>
   </div>
