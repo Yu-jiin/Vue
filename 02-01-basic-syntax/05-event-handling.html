@@ -36,7 +36,8 @@
     <a @click.stop.prevnt="">onLink</a>
 
     <!-- key modifiers -->
-    <input>
+     <!-- enter 누를때만 이벤트 호출 -->
+    <input @keyup.enter = "onSubmit">
 
   </div>
 
