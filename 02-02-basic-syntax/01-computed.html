@@ -52,6 +52,7 @@
         }
 
         // computed 주의사항
+        // 값을 변경하려고 하면 안됨 !! 
         const a = ref(0)
         const abc = computed(() => {
           return a.value + 1
