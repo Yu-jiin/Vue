@@ -9,6 +9,8 @@
 <body>
   <div id="app">
     <h1>현재 작성된 할일 목록 수 : {{todos.length}}</h1>
+    <h2>완료된 todo 목록 수 : {{todos.filter(todo => todo.completed).length}}</h2>
+    <h2>완료된 todo 목록 수(completed) : {{completedTodosCount}}</h2>
     <article id="todo-list">
       <!-- 요소 반복 -->
       <div class="card" v-for="todo in todos" :key="todo.id" :class="{done: todo.completed}" @click="goDetail(todo)">
@@ -23,6 +25,12 @@
       <button @click="todo=false">X</button>
       <h1>{{todo.id}} | {{todo.title}}</h1>
       <p>{{todo.completed}}</p>
+      <!-- 댓글 보여주기 -->
+        <ul>
+          <li v-for="comment in detailComputedComments" :key="comment.id">
+            <p>{{comment.id}} | {{comment.body}}</p>
+          </li>
+        </ul>
     </section>
 
 
@@ -35,7 +43,7 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
-    const { createApp, ref, onMounted } = Vue
+    const { createApp, ref, onMounted, computed, watch } = Vue
     const app = createApp({
       setup() {
         // todo 목록 더미 데이터
@@ -56,6 +64,18 @@
         const goDetail = function(item) {
           todo.value = item
         }
+
+        const comments = ref([])
+        const detailComputedComments = computed(() => {
+          return comments.value.filter(comment => comment.postId === todo.value.id)
+        })
+
+        // 1번째 인자 todo = 감시대상
+        // 2번째 인자 => callBack Function 감시대상의 새로운 값, 변경된 값
+        watch(todo, (newVal, oldVal) => {
+          console.log(newVal, oldVal, 'old')
+        })
+ 
         // JS함수는 호출방식에 따라 this가 달라짐
         onMounted(() => {
           axios({
@@ -67,11 +87,35 @@
               todos.value = res.data.slice(0, 10)
             })
             .catch(err => console.log(err))
+          axios({
+            method: 'get',
+            url: 'https://jsonplaceholder.typicode.com/comments'
+          })
+            .then(res => {
+              comments.value = res.data
+            })
+            .catch(err => console.log(err))
         })
+
+        // const completedTodosCount = function() {
+        //   const result = todos.value.filter(function (todo) {
+        //     return todo.completed === true
+        //   })
+        //   console.log('method is called!!')
+        //   return result.length
+        // }
+        const completedTodosCount = computed(() => {
+          console.log('computed is called!!')
+          return todos.value.filter(todo => todo.completed).length
+        })
+
         return {
           todos,
           todo,
-          goDetail
+          goDetail,
+          completedTodosCount,
+          comments,
+          detailComputedComments
         }
       }
     })
