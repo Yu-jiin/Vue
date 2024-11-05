@@ -54,3 +54,4 @@ API_KEY = env('API_KEY')
 ***
 
 ![alt text](image-9.png)
+![alt text](image-10.png)
