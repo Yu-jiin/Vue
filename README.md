@@ -55,3 +55,5 @@ API_KEY = env('API_KEY')
 
 ![alt text](image-9.png)
 ![alt text](image-10.png)
+1. v-for 에 key 작성학
+2. 동일 요소에 v-if v-for 사용 X
