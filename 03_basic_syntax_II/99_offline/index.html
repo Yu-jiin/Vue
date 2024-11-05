@@ -8,6 +8,7 @@
 </head>
 <body>
   <div id="app">
+    <h1>현재 작성된 할일 목록 수 : {{todos.length}}</h1>
     <article id="todo-list">
       <!-- 요소 반복 -->
       <div class="card" v-for="todo in todos" :key="todo.id" :class="{done: todo.completed}" @click="goDetail(todo)">
@@ -32,8 +33,9 @@
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
-    const { createApp, ref } = Vue
+    const { createApp, ref, onMounted } = Vue
     const app = createApp({
       setup() {
         // todo 목록 더미 데이터
@@ -50,9 +52,22 @@
             completed: true
           }
         ])
+
         const goDetail = function(item) {
           todo.value = item
         }
+        // JS함수는 호출방식에 따라 this가 달라짐
+        onMounted(() => {
+          axios({
+            method: 'get',
+            url: 'https://jsonplaceholder.typicode.com/todos',
+          })
+            .then(res => {
+              console.log(res)
+              todos.value = res.data.slice(0, 10)
+            })
+            .catch(err => console.log(err))
+        })
         return {
           todos,
           todo,
