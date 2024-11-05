@@ -8,7 +8,27 @@
 </head>
 <body>
   <div id="app">
+    <article id="todo-list">
+      <!-- 요소 반복 -->
+      <div class="card" v-for="todo in todos" :key="todo.id" :class="{done: todo.completed}" @click="goDetail(todo)">
+        <p>{{todo.title}}</p>
+        <p>{{todo.completed}}</p>
+      </div>
+    </article>
+    <!-- model창 만들기 -->
+    <!-- v-if는 특정 조건 만족 안하면 렌더링 자체를 안함 -->
+    <!-- 즉 렌더링 단계에서부터 결정되는 과정이기에 우선수위가 젤 높음 -->
+    <section v-show="todo" class="detail" >
+      <button @click="todo=false">X</button>
+      <h1>{{todo.id}} | {{todo.title}}</h1>
+      <p>{{todo.completed}}</p>
+    </section>
 
+
+
+
+    <article id="login-form">
+    </article>
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -16,8 +36,27 @@
     const { createApp, ref } = Vue
     const app = createApp({
       setup() {
+        // todo 목록 더미 데이터
+        const todo = ref(false)
+        const todos = ref([
+          {
+            id: 1,
+            title: 'first title',
+            completed: false
+          },
+          {
+            id: 2,
+            title: 'second title',
+            completed: true
+          }
+        ])
+        const goDetail = function(item) {
+          todo.value = item
+        }
         return {
-
+          todos,
+          todo,
+          goDetail
         }
       }
     })
