@@ -10,13 +10,13 @@
 <body>
   <div id="app">
     <h2>남은 할 일</h2>
-    <p>{{ }}</p>
+    <p>{{restOfTodos}}</p>
     <p>{{ }}</p>
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
-    const { createApp, ref } = Vue
+    const { createApp, ref, computed } = Vue
 
     const app = createApp({
       setup() {
@@ -25,11 +25,14 @@
           { text: '자격증 공부' },
           { text: 'TIL 작성' }
         ])
-
-
-
-
-
+        
+        // computed 속성은 의존된 반응형 데이터를 자동으로 추적
+        // 의존하는 데이터가 변경될 때만 재평가 -> todos가 변경될 때만 restOfTodos 업뎃
+        const restOfTodos = computed(() => {
+          return  todos.value.length > 0 ? '아직 남았다 ㅅ_ㅂ' : '퇴근갈비'
+        })
+        console.log(restOfTodos.value)
+    
         // computed 주의사항
         const a = ref(0)
         const abc = computed(() => {
@@ -40,9 +43,9 @@
         // Write operation failed: computed value is readonly
         console.log(abc.value++) // 1
 
-
         return {
-          todos
+          todos,
+          restOfTodos
         }
       }
     })
