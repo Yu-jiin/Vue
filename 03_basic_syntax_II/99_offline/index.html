@@ -11,7 +11,7 @@
     <h1>현재 작성된 할일 목록 수 : {{todos.length}}</h1>
     <h2>완료된 todo 목록 수 : {{todos.filter(todo => todo.completed).length}}</h2>
     <h2>완료된 todo 목록 수(completed) : {{completedTodosCount}}</h2>
-    <article id="todo-list">
+    <article id="todo-list" v-if="isLogin">
       <!-- 요소 반복 -->
       <div class="card" v-for="todo in todos" :key="todo.id" :class="{done: todo.completed}" @click="goDetail(todo)">
         <p>{{todo.title}}</p>
@@ -33,10 +33,16 @@
         </ul>
     </section>
 
-
-
-
-    <article id="login-form">
+    <!-- js 부정형 = ! -->
+    <article id="login-form" v-if="!isLogin">
+      {{username}}
+      <form @submit.prevent="login">
+        <label for="username">username: </label>
+        <input type="text" id="username" required v-model="username">
+        <label for="password">password: <s></s></label>
+        <input type="password" id="password"  required v-model="password">
+        <input type="submit" value="LOGIN">
+      </form>
     </article>
   </div>
 
@@ -108,14 +114,28 @@
           console.log('computed is called!!')
           return todos.value.filter(todo => todo.completed).length
         })
-
+        const username = ref('')
+        const password = ref('')
+        const isLogin = ref(false)
+        const login = function() {
+          if(username.value.trim() && password.value.trim()){
+            if(username.value.length > 12) {
+              alert('username은 12글자 이하로 작성해주세요')
+              return 
+            }
+            isLogin.value = true
+          } else{
+            alert('아이디와 비번 입력해 주세요')
+          }
+        }
         return {
           todos,
           todo,
           goDetail,
           completedTodosCount,
           comments,
-          detailComputedComments
+          detailComputedComments,
+          isLogin, username, password, login
         }
       }
     })
