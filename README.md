@@ -70,6 +70,6 @@ npm run dev
 ```
 - npm install 했더니 lock.json, node_modules 파일이 추가
 - node_moduels => 
-  - 1. Node.js에 사용되는 외부 패키지가 저장되는 디렉토리
-  - 2. 프로젝트 의존성 모듈 저장 및 관리
-  - 3. .gitignore에 작성됨
+  - Node.js에 사용되는 외부 패키지가 저장되는 디렉토리
+  - 프로젝트 의존성 모듈 저장 및 관리
+  - .gitignore에 작성됨
