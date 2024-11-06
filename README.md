@@ -68,8 +68,26 @@ cd vue-project
 npm install
 npm run dev
 ```
-- npm install 했더니 lock.json, node_modules 파일이 추가
+- npm install 했더니 package-lock.json, node_modules 파일이 추가
 - node_moduels => 
   - Node.js에 사용되는 외부 패키지가 저장되는 디렉토리
   - 프로젝트 의존성 모듈 저장 및 관리
   - .gitignore에 작성됨
+- package-lock.json => 
+  - 패키지 설치에 필요한 모든 정보 포함
+  - 프로젝트 의존성을 관리하고 버전 충돌 및 일관성 유지
+- public 디렉토리
+  - 주로 정적 파일 위치 (import 할 필요 없는)
+  - 항상 root 절대 경로를 참조 (/icon.png)
+- src 디렉토리
+  - 프로젝트 주요 소스 코드 포함
+  - 컴포넌트, 스타일, 라우팅 등 핵심코드 관리
+  - 1. assets = 프로젝트 내에서 사용되는 자원, 내부 파일 저장
+  - 2. components = Vue 컴포넌트들 작성
+  - 3. App.vue = 최상위 Root 컴포넌트
+  - 4. main.js = 필요한 라이브러리 import, 전역 설정 수행
+  - 5. index.html = Root 컴포너트 App.vue가 해당 페이지에 마운트
+  ```
+  import MyComponent from '@/components/MyComponent.vue' 
+  <!-- @ = src를 뜻하는 약어 -->
+  ```
