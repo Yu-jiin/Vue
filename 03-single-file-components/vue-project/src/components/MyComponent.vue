@@ -5,6 +5,7 @@
     <MyComponentItem/>
     <MyComponentItem/>
   </div>
+
 </template>
 
 <script setup>
