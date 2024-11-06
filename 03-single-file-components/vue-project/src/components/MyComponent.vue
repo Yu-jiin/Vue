@@ -10,6 +10,7 @@
 
 <script setup>
 import MyComponentItem from '@/components/MyComponentItem.vue';
+
 </script>
 
 
