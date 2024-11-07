@@ -91,3 +91,7 @@ npm run dev
   import MyComponent from '@/components/MyComponent.vue' 
   <!-- @ = src를 뜻하는 약어 -->
   ```
+
+  ***
+  ![alt text](image-11.png)
+  ![alt text](image-12.png)
