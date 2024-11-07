@@ -2,7 +2,9 @@
   <div>
     <p>{{ myMsg }}</p>
     <ParentGrandChild 
-      :my-msg="myMsg"/>
+      :my-msg="myMsg"
+      @update-name="updateName"
+      />
     <h5>{{ dynamicProps }}</h5>
 
     <button @click="buttonClick">클릭</button>
@@ -29,12 +31,15 @@ defineProps({
 // js에서는 myMsg와 같은 camelCase 권장
 
 // emit이벤트 선언
-const emit = defineEmits(['someEvent', 'emitArgs'])
+const emit = defineEmits(['someEvent', 'emitArgs', 'updateName'])
 const buttonClick = function() {
   emit('someEvent')
 }
 const emitArgs = function() {
   emit('emitArgs', 1, 2, 3)
+}
+const updateName =function() {
+  emit('updateName')
 }
 </script>
 

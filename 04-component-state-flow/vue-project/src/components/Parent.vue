@@ -8,6 +8,7 @@
   @emit-args = "getNumbers"
   my-msg="message" 
   :dynamic-props="name"
+  @update-name="updateName"
   />
   <ParentItem
     v-for="item in items"
@@ -36,6 +37,10 @@ const someCallback = function() {
 const getNumbers = function(...args) {
   console.log(args)
   console.log(`ParentChild가 전달한 추가 인자 ${args}를 수신 완`)
+}
+
+const updateName = function() {
+  name.value = 'Bella'
 }
 </script>
 
