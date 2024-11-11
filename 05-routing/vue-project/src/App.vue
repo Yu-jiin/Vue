@@ -1,6 +1,8 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import {ref} from 'vue'
+const userId = ref(1)
 </script>
 
 <template>
@@ -11,8 +13,9 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink :to="{name:'home'}">Home</RouterLink>
+        <RouterLink :to="{name:'about'}">About</RouterLink>
+        <RouterLink :to="{name:'user', params: {'id': userId} }">User</RouterLink>
       </nav>
     </div>
   </header>
