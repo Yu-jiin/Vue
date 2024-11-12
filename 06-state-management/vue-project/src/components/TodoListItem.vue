@@ -1,11 +1,13 @@
 <template>
   <div>
-    TodoListItem
+    {{todo.text}}
   </div>
 </template>
 
 <script setup>
-
+defineProps({
+  todo: Object
+})
 </script>
 
 <style scoped>
