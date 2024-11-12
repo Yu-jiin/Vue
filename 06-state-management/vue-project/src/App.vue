@@ -1,10 +1,18 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+// 중앙저장소에서 import 
+import { useCounterStore } from '@/stores/counter'
+// useCounterStore의 반환값이 필요
+const store = useCounterStore()
+console.log(store.count)
 </script>
 
 <template>
   <header>
+    <div>
+      <p>getters : {{ store.doubleCount }}</p>
+    </div>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">

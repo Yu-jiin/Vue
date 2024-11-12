@@ -16,5 +16,8 @@ export const useCounterStore = defineStore('counter', () => {
     count.value++
   }
 
+  // pinia 반드시 반환값 필요 
   return { count, doubleCount, increment }
 })
+
+// store에 state를 정의하지않으면 컴포넌트에서 새로 추가 불가능.. 
