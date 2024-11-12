@@ -96,3 +96,37 @@ npm run dev
   ***
   ![alt text](image-11.png)
   ![alt text](image-12.png)
+
+  ***
+
+### pinia-plugin-persistedstate
+  - 웹 애플리케이션 상태를 브라우저의 local storage나 session storage에 영구적으로 저장하고 복원하는 기능을 제공 
+  ```
+  npm i pinia-plugin-persistedstate
+
+    
+  import { createApp } from 'vue'
+  import { createPinia } from 'pinia'
+  import App from './App.vue'
+
+  import { createPinia } from 'pinia'
+  import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+
+
+  const pinia = createPinia()
+  const app = createApp(App)
+
+  pinia.use(piniaPluginPersistedstate)
+  // app.use(createPinia())
+  app.use(pinia)
+
+  app.mount('#app')
+
+  <!-- count.js에 -->
+  <!-- pinia 반드시 반환값 필요  -->
+  return { todos, addTodo, deleteTodo, updateTodo, doneTodosCount }
+  }, {persist: true})
+  <!-- persist: true 써주기 -->
+
+  ```
+

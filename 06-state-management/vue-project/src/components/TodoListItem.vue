@@ -1,6 +1,10 @@
 <template>
   <div>
-    <span>{{todo.text}}</span>
+    <span @click="store.updateTodo(todo.id)" 
+          :class="{'is-done' : todo.isDone}"
+    >
+      {{todo.text}}
+    </span>
     <!-- 얘는 직접호출 .. ! create는 간접호출  -->
     <button @click="store.deleteTodo(todo.id)">DELETE</button>
   </div>
@@ -17,4 +21,7 @@ defineProps({
 </script>
 
 <style scoped>
+.is-done {
+  text-decoration: line-through;
+}
 </style>

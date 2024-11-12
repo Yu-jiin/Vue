@@ -30,8 +30,26 @@ export const useCounterStore = defineStore('counter', () => {
     console.log('DELETE')
   }
 
+  // todo UPDATE 
+  const updateTodo = function(todoId) {
+    // map = 배열 리턴 
+    todos.value = todos.value.map((todo) => {
+      if (todo.id === todoId) {
+        todo.isDone = !todo.isDone
+      }
+      return todo
+    })
+    console.log('update')
+  }
+
+  // 완료된 todo 개수 계산
+  const doneTodosCount = computed(() => {
+    const doneTodos = todos.value.filter((todo) => todo.isDone)
+    return doneTodos.length
+  })
+
   // pinia 반드시 반환값 필요 
-  return { todos, addTodo, deleteTodo }
-})
+  return { todos, addTodo, deleteTodo, updateTodo, doneTodosCount }
+}, {persist: true})
 
 // store에 state를 정의하지않으면 컴포넌트에서 새로 추가 불가능.. 
