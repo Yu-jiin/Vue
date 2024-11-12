@@ -14,8 +14,22 @@ export const useCounterStore = defineStore('counter', () => {
     {id: id++, text: '할 일 2', isDone: false},
   ])
 
+  // todo CREATE
+  const addTodo = function (todoText) {
+    todos.value.push({
+      id: id++,
+      text: todoText,
+      isDone: false
+    })
+  }
+
+  // todo DELETE
+  const deleteTodo = function () {
+    console.log('DELETE')
+  }
+
   // pinia 반드시 반환값 필요 
-  return { todos }
+  return { todos, addTodo, deleteTodo }
 })
 
 // store에 state를 정의하지않으면 컴포넌트에서 새로 추가 불가능.. 
