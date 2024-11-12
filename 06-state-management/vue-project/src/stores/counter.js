@@ -24,7 +24,9 @@ export const useCounterStore = defineStore('counter', () => {
   }
 
   // todo DELETE
-  const deleteTodo = function () {
+  const deleteTodo = function (todoId) {
+    const index = todos.value.findIndex((todo) => todo.id === todoId)
+    todos.value.splice(index, 1)
     console.log('DELETE')
   }
 
