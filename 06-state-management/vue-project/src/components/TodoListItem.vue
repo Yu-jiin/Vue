@@ -1,6 +1,6 @@
-
 <template>
   <div>
+    TodoListItem
   </div>
 </template>
 
@@ -9,5 +9,4 @@
 </script>
 
 <style scoped>
-
 </style>

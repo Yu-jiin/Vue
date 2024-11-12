@@ -6,18 +6,14 @@ import { defineStore } from 'pinia'
 export const useCounterStore = defineStore('counter', () => {
 
   // ref() === state
-  const count = ref(0)
 
   // computed() === getters
-  const doubleCount = computed(() => count.value * 2)
 
   // function() === actions
-  function increment() {
-    count.value++
-  }
+
 
   // pinia 반드시 반환값 필요 
-  return { count, doubleCount, increment }
+  return {  }
 })
 
 // store에 state를 정의하지않으면 컴포넌트에서 새로 추가 불가능.. 
