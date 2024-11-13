@@ -132,5 +132,7 @@ npm run dev
   ```
   <!-- DRF서버로부터 AJAX 요청을 위한 axios 설치 (vue) -->
   npm install axios
+
+  $ pip install django-cors-headers
   <!-- 0701vue settings.py 잘 봐주기 .. !  -->
   ```
