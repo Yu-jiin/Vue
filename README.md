@@ -129,4 +129,7 @@ npm run dev
   <!-- persist: true 써주기 -->
 
   ```
-
+  ```
+  <!-- DRF서버로부터 AJAX 요청을 위한 axios 설치 (vue) -->
+  npm install axios
+  ```
