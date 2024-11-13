@@ -13,8 +13,9 @@ export const useCounterStore = defineStore('counter', () => {
       url: `${API_URL}/api/v1/articles/`
     })
       .then(res => {
-        console.log(res)
-        console.log(res.data)
+        // 응답받은 배열 저장 
+        // pinia-plugin-persistedstate에 의해 브라우저 Local Stoarge에 저장
+        articles.value = res.data
       })
       .catch(err => {
         console.log(err)
