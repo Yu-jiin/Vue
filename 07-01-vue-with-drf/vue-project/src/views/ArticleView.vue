@@ -7,6 +7,12 @@
 
 <script setup>
 import ArticleList from '@/components/ArticleList.vue';
+import { useCounterStore } from '@/stores/counter';
+import { onMounted } from 'vue';
+const store = useCounterStore()
+onMounted(() => {
+  store.getArticles()
+})
 </script>
 
 <style>
