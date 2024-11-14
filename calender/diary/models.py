@@ -15,3 +15,4 @@ class Comment(models.Model):
 class Like(models.Model):
     diary = models.ForeignKey(Diary, related_name='likes', on_delete=models.CASCADE)
     
+    
