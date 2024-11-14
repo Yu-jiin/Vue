@@ -3,15 +3,15 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 
 # permission Decorators
-# from rest_framework.decorators import permission_classes
-# from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .serializers import ArticleListSerializer, ArticleSerializer
 from .models import Article
 
-
+# 인증된 사용자만
 @api_view(['GET', 'POST'])
 # @permission_classes([IsAuthenticated])
 def article_list(request):
@@ -23,11 +23,11 @@ def article_list(request):
     elif request.method == 'POST':
         serializer = ArticleSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
+            # serializer.save()
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
+# 모두 가능
 @api_view(['GET'])
 def article_detail(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
