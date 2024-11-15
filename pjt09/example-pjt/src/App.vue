@@ -1,10 +1,11 @@
 <script setup>
 import { RouterView } from 'vue-router'
-
+import AppNavbar from './components/Common/AppNavbar.vue';
 </script>
 
 <template>
-  <!-- Navbar 가 빠졌다 .. ! -->
+  <AppNavbar/>
+
   <RouterView />
 </template>
 
