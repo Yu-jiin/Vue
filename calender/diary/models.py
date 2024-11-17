@@ -5,7 +5,7 @@ class Diary(models.Model):
     date = models.DateField()
     title = models.CharField(max_length=100)
     content = models.TextField()
-    mood = models.ImageField(upload_to='mood/')
+    mood = models.ImageField(upload_to='mood/', null=True, blank=True)
     
 class Comment(models.Model):
     diary = models.ForeignKey(Diary, related_name='comments', on_delete=models.CASCADE)

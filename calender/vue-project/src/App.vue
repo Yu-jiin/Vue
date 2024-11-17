@@ -66,7 +66,7 @@ export default {
     const emojis = [happy, sad, angry, sleepy, excited, calm];
     const dates = ref([]);
 
-    // 달력 생성 함수
+    // 달력 생성 
     const createCalendar = () => {
       const firstDay = new Date(year.value, month.value, 1).getDay();
       const lastDate = new Date(year.value, month.value + 1, 0).getDate();
@@ -141,7 +141,7 @@ export default {
     // 이모지 선택
     const selectEmoji = (emoji) => {
       if (selectedDate.value) {
-        selectedDate.value.emoji = emoji;  // 선택된 날짜에 이모지 이미지 추가
+        selectedDate.value.emoji = emoji; 
       }
       showEmojiModal.value = false;
     };
@@ -205,7 +205,7 @@ export default {
 }
 
 .date {
-  padding: 25px 15px; /* 높이를 늘리기 위해 세로 패딩을 25px로 설정 */
+  padding: 25px 15px;
   border-radius: 5px;
   text-align: center;
   cursor: pointer;
